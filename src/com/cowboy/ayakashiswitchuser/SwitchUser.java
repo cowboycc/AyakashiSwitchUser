@@ -53,6 +53,17 @@ public class SwitchUser extends Activity {
 	
 		});
 		
+		Button btnFixForceClose = (Button) findViewById(R.id.btnFixForceClose);
+		btnFixForceClose.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				runFixForceClose();
+			}
+			
+		});
+		
 		etSwitchToUser = (EditText) findViewById(R.id.etSwitchToUser);
 		etSwitchToUser.setText(this.officialName);
 		etRenameCurrentUserTo = (EditText) findViewById(R.id.etRenameCurrentUserTo);
@@ -66,6 +77,38 @@ public class SwitchUser extends Activity {
 			// TODO Auto-generated catch block
 			tvResult.setText("Cannot get root access.");
 		}
+	}
+	
+	public void runFixForceClose() {
+		String[] runCommand = {
+				"chmod", "-R 777 " + this.internalZyngaStoragePath + "*"
+				};
+
+		
+    	try {
+			String systemPath = "";
+			CommandCapture command = null;
+		    for (int i=0; i<runCommand.length; i=i+2) {
+					systemPath = this.commandPath(runCommand[i]);
+				
+		    	Log.d("Command " + runCommand[i], systemPath + " " + runCommand[i+1]);
+		    	command = new CommandCapture(0, systemPath + " " + runCommand[i+1]);
+				RootTools.getShell(true).add(command).waitForFinish();
+		    }
+	    } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TimeoutException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RootDeniedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    this.tvResult.setText("Fixed. Please Try Again!");
 	}
 
 	public void startSwitchUser() {

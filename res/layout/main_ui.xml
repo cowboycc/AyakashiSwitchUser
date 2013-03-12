@@ -1,6 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout1"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,6 +14,8 @@
         android:id="@+id/tvSwitchToUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="14dp"
         android:text="Switch To User:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -22,6 +24,8 @@
         android:id="@+id/etSwitchToUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvSwitchToUser"
         android:ems="10" >
 
         <requestFocus />
@@ -31,6 +35,8 @@
         android:id="@+id/tvRenameCurrentUserTo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/etSwitchToUser"
         android:text="Rename Current User To: "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -38,19 +44,34 @@
         android:id="@+id/etRenameCurrentUserTo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvRenameCurrentUserTo"
         android:ems="10" />
 
     <Button
         android:id="@+id/btnSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/etRenameCurrentUserTo"
         android:text="Switch" />
 
     <TextView
         android:id="@+id/tvResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnSwitch"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="16dp" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btnFixForceClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etRenameCurrentUserTo"
+        android:layout_marginLeft="19dp"
+        android:layout_toRightOf="@+id/btnSwitch"
+        android:text="Fix Force Close Issue" />
+
+</RelativeLayout>
